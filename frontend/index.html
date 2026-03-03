@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Censo 2024 · Dashboard de Resultados Comunales</title>
+    <!-- Modern Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Unicons for Icons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar glass-effect">
+            <div class="brand">
+                <div class="brand-logo"><i class="uil uil-analytics"></i></div>
+                <div class="brand-text">
+                    <h1>Censo 2024</h1>
+                    <p>Dashboard Analítico</p>
+                </div>
+            </div>
+
+            <div class="controls-section">
+                <div class="control-group">
+                    <label for="regionSelect"><i class="uil uil-map-marker"></i> Seleccionar Región</label>
+                    <select id="regionSelect" class="modern-select">
+                        <option value="">Cargando regiones...</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="comunaSelect"><i class="uil uil-building"></i> Seleccionar Comuna</label>
+                    <select id="comunaSelect" class="modern-select" disabled>
+                        <option value="">Elije una región primero</option>
+                    </select>
+                </div>
+
+                <div class="control-group" style="margin-top: 15px;">
+                    <label><i class="uil uil-list-ui-alt"></i> Variables de Interés</label>
+                    <div id="variablesContainer" class="checkbox-list variables-scroll">
+                        <span style="color:var(--text-muted);font-size:0.85rem">Cargando variables...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="export-actions" id="exportActions" style="display: none;">
+                <h3><i class="uil uil-export"></i> Exportar Reporte</h3>
+                <button id="btnExportExcel" class="action-btn excel-btn">
+                    <i class="uil uil-file-bookmark-alt"></i> Descargar Excel
+                </button>
+                <button id="btnExportWord" class="action-btn word-btn">
+                    <i class="uil uil-file-info-alt"></i> Descargar Word (Contexto)
+                </button>
+                <div id="exportStatus" class="export-status"></div>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>Procesamiento Local Seguro <br>DuckDB + FastAPI</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h2 id="headerTitle">Bienvenido al Explorador del Censo</h2>
+                <div class="status-badge" id="dataStatus">Esperando selección</div>
+            </header>
+
+            <div class="content-wrapper" id="resultadosContainer">
+                <div class="empty-state">
+                    <i class="uil uil-search-alt"></i>
+                    <h3>Selecciona un territorio</h3>
+                    <p>Utiliza el panel lateral para elegir una Región y Comuna y visualizar instantáneamente todos los
+                        resultados tabulados del Censo 2024.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Spinner Overlay para Exportaciones -->
+    <div class="overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Generando reportes, por favor espera...</p>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>

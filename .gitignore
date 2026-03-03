@@ -1,0 +1,13 @@
+venv/
+export/
+exports/
+.DS_Store
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.duckdb
+*.db
+.pytest_cache/
+.coverage
+htmlcov/

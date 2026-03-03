@@ -1,0 +1,705 @@
+{
+  "id_vivienda": {
+    "1:7664466": "Válidos"
+  },
+  "region": {
+    "1:16": "Ver diccionario códigos territoriales"
+  },
+  "provincia": {
+    "11:163": "Ver diccionario códigos territoriales"
+  },
+  "comuna": {
+    "1101:16305": "Ver diccionario códigos territoriales"
+  },
+  "area": {
+    "1": "Urbano",
+    "2": "Rural"
+  },
+  "tipo_operativo": {
+    "1": "Persona en situación de calle",
+    "2": "Vivienda particular",
+    "3": "Vivienda colectiva"
+  },
+  "p2_tipo_vivienda": {
+    "1": "Casa",
+    "3": "Departamento",
+    "5": "Vivienda tradicional indígena (ruka u otras)",
+    "6": "Pieza en casa antigua o en conventillo",
+    "7": "Mediagua, mejora, vivienda de emergencia, rancho o choza",
+    "8": "Móvil (carpa, casa rodante o similar)",
+    "9": "Otro tipo de vivienda particular",
+    "nan": "No aplica"
+  },
+  "p3a_estado_ocupacion": {
+    "1": "Ocupada",
+    "2": "Desocupada",
+    "nan": "No aplica"
+  },
+  "p3b_estado_ocupacion": {
+    "1": "Moradores presentes",
+    "2": "Moradores ausentes",
+    "6": "Otras razones de no entrevista",
+    "7": "En venta o arriendo",
+    "8": "Vivienda de temporada (veraneo o de uso temporal)",
+    "9": "Abandonada",
+    "10": "Otra razón de desocupación",
+    "nan": "No aplica"
+  },
+  "p4a_mat_paredes": {
+    "1": "Hormigón armado",
+    "2": "Albañilería: bloque de cemento, ladrillo o piedra",
+    "3": "Tabique forrado por ambas caras (madera o acero)",
+    "4": "Tabique sin forro interior (madera u otro)",
+    "5": "Adobe, barro, pirca, quincha u otro material artesanal",
+    "6": "Materiales precarios o de desecho: cartón, sacos, trozos de latas o plásticos, etc.",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p4b_mat_techo": {
+    "1": "Tejas o tejuelas de arcilla, metálicas, de cemento, de madera, asfálticas o plásticas",
+    "2": "Losa hormigón",
+    "3": "Planchas metálicas de zinc, cobre, etc",
+    "4": "Planchas de fibrocemento tipo pizarreño",
+    "5": "Fonolita o plancha de fieltro embreado",
+    "6": "Paja, coirón, totora o caña",
+    "7": "Materiales precarios o de desecho: cartón, sacos, trozos de latas o plásticos, etc",
+    "8": "Sin cubierta sólida de techo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p4c_mat_piso": {
+    "1": "Parquet, piso flotante, cerámico, madera, alfombra, flexit, cubrepiso u otro similar; sobre radier o vigas de madera",
+    "2": "Radier sin revestimiento",
+    "3": "Baldosa de cemento",
+    "4": "Capa de cemento sobre tierra",
+    "5": "Tierra",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p5_num_dormitorios": {
+    "0": "0",
+    "1": "1",
+    "2": "2",
+    "3": "3",
+    "4": "4",
+    "5": "5",
+    "6": "6 o más",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p6_fuente_agua": {
+    "1": "Red pública",
+    "2": "Pozo o noria",
+    "​3": "Camión aljibe",
+    "​4": "Río, vertiente, estero, canal, lago, agua lluvia, etc.",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p7_distrib_agua": {
+    "1": "Con llave dentro de la vivienda",
+    "2": "Con llave dentro del sitio, pero fuera de la vivienda",
+    "3": "No tiene sistema, la acarrea",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p8_serv_hig": {
+    "1": "Dentro de la vivienda, conectado a una red de alcantarillado",
+    "2": "Fuera de la vivienda, conectado a una red de alcantarillado",
+    "3": "Conectado a una fosa séptica",
+    "4": "Conectado a pozo negro (letrina sanitaria o cajón)",
+    "5": "En un cajón sobre acequia o canal",
+    "6": "En un cajón conectado a otro sistema",
+    "7": "Baño químico",
+    "8": "Conectado a baño seco",
+    "9": "No tiene servicio higiénico",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p9_fuente_elect": {
+    "1": "Red pública",
+    "2": "Generador con diésel o bencina",
+    "3": "Placa solar",
+    "4": "Energía eólica (viento)",
+    "5": "Otro",
+    "6": "No tiene energía eléctrica",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p10_basura": {
+    "1": "La recogen los servicios de aseo",
+    "2": "La entierra y/o quema",
+    "3": "La deja en terreno eriazo, quebrada o zanja",
+    "4": "La tira al río, laguna o mar",
+    "5": "Otro",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p11a_num_personas": {
+    "1:60": "nan",
+    "nan": "nan"
+  },
+  "p11b_comparte_gasto": {
+    "1": "Sí",
+    "2": "No",
+    "nan": "nan"
+  },
+  "p11c_num_hogar": {
+    "2:26": "nan",
+    "nan": "nan"
+  },
+  "cant_per": {
+    "0:5806": "nan"
+  },
+  "cant_hog": {
+    "0:26": "nan",
+    "nan": "No aplica"
+  },
+  "indice_hacinamiento": {
+    "1": "Vivienda sin hacinamiento",
+    "2": "Vivienda con hacinamiento medio",
+    "3": "Vivienda con hacinamiento crítico",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "comuna_bajo_umbral": {
+    "1": "Sí",
+    "2": "No"
+  },
+  "id_hogar": {
+    "0:26": "Válidos"
+  },
+  "p12_tenencia_viv": {
+    "1": "Propia pagada",
+    "2": "Propia pagándose",
+    "3": "Arrendada con contrato",
+    "4": "Arrendada sin contrato",
+    "5": "Cedida por trabajo o servicio",
+    "6": "Cedida por familiar u otro",
+    "7": "Usufructo: solo uso y goce",
+    "8": "Ocupada de hecho",
+    "9": "Propiedad en sucesión o litigio",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p13_comb_cocina": {
+    "1": "Gas",
+    "2": "Parafina o petróleo",
+    "3": "Leña",
+    "4": "Pellet",
+    "5": "Carbón",
+    "6": "Electricidad",
+    "7": "Energía solar (ej. cocina u horno solar)",
+    "8": "No utiliza fuente de energía o combustible para cocinar",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p14_comb_calefaccion": {
+    "1": "Gas",
+    "2": "Parafina o petróleo",
+    "3": "Leña",
+    "4": "Pellet",
+    "5": "Carbón",
+    "6": "Electricidad",
+    "7": "Otra",
+    "8": "No utiliza fuente de energía o combustible para calefaccionar",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15a_serv_tel_movil": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15b_serv_compu": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15c_serv_tablet": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15d_serv_internet_fija": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15e_serv_internet_movil": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p15f_serv_internet_satelital": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "tipologia_hogar": {
+    "1": "Unipersonal",
+    "2": "Nuclear monoparental",
+    "3": "Nuclear pareja sin hijos",
+    "4": "Nuclear pareja con hijos",
+    "5": "Extenso",
+    "6": "Compuesto",
+    "7": "Sin núcleo",
+    "nan": "No aplica"
+  },
+  "id_persona": {
+    "0:5806": "Válidos"
+  },
+  "parentesco": {
+    "1": "Jefe/a de hogar",
+    "2": "Esposo/a o cónyuge",
+    "3": "Conviviente por unión civil",
+    "4": "Conviviente de hecho o pareja",
+    "5": "Hijo/a",
+    "6": "Hijo/a del cónyuge, conviviente o pareja",
+    "7": "Hermano/a",
+    "8": "Padre/Madre",
+    "9": "Cuñado/a",
+    "10": "Suegro/a",
+    "11": "Yerno/Nuera",
+    "12": "Nieto/a",
+    "13": "Abuelo/a",
+    "14": "Otro Pariente",
+    "15": "No Pariente​",
+    "16": "Servicio doméstico puertas adentro",
+    "17": "Persona en vivienda colectiva",
+    "19": "Persona en operativo calle"
+  },
+  "sexo": {
+    "1": "Hombre",
+    "2": "Mujer"
+  },
+  "edad": {
+    "0:85": "Válidos",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "edad_quinquenal": {
+    "0": "0-4",
+    "5": "5-9",
+    "10": "10-14",
+    "15": "15-19",
+    "20": "20-24",
+    "25": "25-29",
+    "30": "30-34",
+    "35": "35-39",
+    "40": "40-44",
+    "45": "45-49",
+    "50": "50-54",
+    "55": "55-59",
+    "60": "60-64",
+    "65": "65-69",
+    "70": "70-74",
+    "75": "75-79",
+    "80": "80-84",
+    "85": "85 o más"
+  },
+  "p23_est_civil": {
+    "1": "Casado/a",
+    "2": "Conviviente o pareja sin acuerdo de unión civil",
+    "3": "Conviviente civil (con acuerdo de unión civil)",
+    "4": "Anulado/a",
+    "5": "Separado/a",
+    "6": "Divorciado/a",
+    "7": "Viudo/a",
+    "8": "Soltero/a",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p24_lug_resid5": {
+    "1": "Aún no nacía",
+    "2": "En esta comuna",
+    "3": "En otra comuna",
+    "4": "En otro país",
+    "-99": "No respuesta"
+  },
+  "p24_lug_resid5_esp": {
+    "2:16305": "Ver diccionario códigos territoriales específicos",
+    "-99": "No respuesta en país de residencia hace 5 años",
+    "nan": "No aplica",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "p25_lug_nacimiento": {
+    "1": "En esta comuna",
+    "2": "En otra comuna",
+    "3": "En otro país",
+    "-99": "No respuesta"
+  },
+  "p25_lug_nacimiento_rec": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta"
+  },
+  "p25_lug_nacimiento_esp": {
+    "2:16305": "Ver diccionario códigos territoriales específicos",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "p26_llegada_periodo": {
+    "1": "Entre 2023 y 2024",
+    "2": "Entre 2020 y 2022",
+    "3": "Entre 2017 y 2019",
+    "4": "Entre 2014 y 2016",
+    "5": "Entre 2010 y 2013",
+    "6": "Entre 2000 y 2009",
+    "7": "Entre 1990 y 1999",
+    "8": "Antes de 1990",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p27_nacionalidad": {
+    "1": "Chilena​ (exclusivamente)",
+    "2": "Chilena y otra (doble nacionalidad)",
+    "3": "Otra nacionalidad",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "p27_nacionalidad_esp": {
+    "2:862": "Ver diccionario códigos territoriales específicos",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "p27_nacionalidad_rec": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta"
+  },
+  "p28_autoid_pueblo": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta"
+  },
+  "p28_pueblo_pert": {
+    "1": "Mapuche",
+    "2": "Aymara",
+    "3": "Rapa Nui",
+    "4": "Atacameño o Lickanantay",
+    "5": "Quechua",
+    "6": "Colla",
+    "7": "Diaguita",
+    "8": "Kawésqar",
+    "9": "Yagán",
+    "10": "Chango",
+    "11": "Selk’nam",
+    "12": "Otro",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "p29_afrodescendencia": {
+    "1": "Afrodescendiente",
+    "2": "Afrochileno/a",
+    "3": "Negro/a",
+    "4": "Del Pueblo Tribal Afrodescendiente Chileno",
+    "5": "Moreno/a de Azapa",
+    "6": "Negro/a de la Chimba",
+    "7": "Ninguna de las anteriores",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización"
+  },
+  "p29_afrodescendencia_rec": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta"
+  },
+  "p30_lengua_indigena": {
+    "1": "Mapuzugún (lengua mapuche)",
+    "2": "Aymara",
+    "3": "Quechua",
+    "4": "Rapa Nui",
+    "5": "Ckunza",
+    "6": "Kawésqar",
+    "7": "Yagán",
+    "8": "Otra lengua indígena de Chile",
+    "9": "No habla ni entiende ninguna lengua indígena de Chile",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "p30_lengua_indigena_rec": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p31_religion": {
+    "1": "Católica",
+    "2": "Evangélica o Protestante",
+    "5": "Iglesia de Jesucristo de los Santos de los Últimos Días",
+    "10": "Testigo de Jehová",
+    "12": "Ninguna",
+    "999": "Otra religión o credo",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "p31_religion_rec": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32a_dificultad_ver": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32b_dificultad_oir": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32c_dificultad_mover": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32d_dificultad_cogni": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32e_dificultad_cuidado": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p32f_dificultad_comunic": {
+    "1": "No, sin dificultad",
+    "2": "Sí, algo de dificultad",
+    "3": "Sí, mucha dificultad",
+    "4": "No puede hacerlo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "discapacidad": {
+    "1": "Con discapacidad",
+    "2": "Sin discapacidad",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p33_edu_asiste": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta"
+  },
+  "asistencia_parv": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "asistencia_basica": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "asistencia_media": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "asistencia_superior": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  },
+  "p37_alfabet": {
+    "1": "Sí",
+    "2": "No",
+    "-99": "No respuesta",
+    "nan": "nan"
+  },
+  "escolaridad": {
+    "0:24": "Válidos",
+    "-99": "No respuesta"
+  },
+  "cine11": {
+    "1": "01: Nunca cursó un programa educativo",
+    "2": "02: Educación de la primera infancia (incluye la forma parcial)",
+    "3": "03: Primaria en forma parcial (sin conclusión del nivel)",
+    "4": "10: Educación primaria (nivel 1)",
+    "5": "14: Educación primaria (nivel 2), con orientación general",
+    "6": "24: Educación secundaria, con orientación general",
+    "7": "25: Educación secundaria, con orientación vocacional",
+    "8": "35: Educación terciaria de ciclo corto, con orientación vocacional",
+    "9": "46: Grado de educación terciaria o nivel equivalente, con orientación no especificada",
+    "10": "56: Nivel de maestría, especialización o equivalente, con orientación no especificada",
+    "11": "64: Nivel de doctorado o equivalente, con orientación académica",
+    "12": "98: Educación especial o diferencial",
+    "-99": "No respuesta"
+  },
+  "sit_fuerza_trabajo": {
+    "1": "Ocupado",
+    "2": "Desocupado",
+    "3": "Fuera de la fuerza de trabajo",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p40_cise_rec": {
+    "1": "Independiente",
+    "2": "Dependiente",
+    "3": "Trabajador/a familiar o personal no remunerado en un negocio de un integrante de su familia",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "depend_econ_deficit_hab": {
+    "1": "Económicamente independiente",
+    "2": "Económicamente dependiente",
+    "-99": "No respuesta"
+  },
+  "cod_ciuo": {
+    "1": "Directores, gerentes y administradores",
+    "2": "Profesionales, científicos e intelectuales",
+    "3": "Técnicos y profesionales de nivel medio",
+    "4": "Personal de apoyo administrativo",
+    "5": "Trabajadores de los servicios y vendedores de comercios y mercados",
+    "6": "Agricultores y trabajadores calificados agropecuarios, forestales y pesqueros",
+    "7": "Artesanos y operarios de oficios",
+    "8": "Operadores de instalaciones, máquinas y ensambladores",
+    "9": "Ocupaciones elementales",
+    "0": "Ocupaciones de las fuerza armadas",
+    "999": "Respuesta no codificable",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "cod_caenes": {
+    "A": "Agricultura, ganadería, silvicultura y pesca",
+    "B": "Explotación de minas y canteras",
+    "C": "Industrias manufactureras",
+    "D": "Suministro de electricidad, gas, vapor y aire acondicionado",
+    "E": "Suministro de agua; evacuación de aguas residuales, gestión de desechos y descontaminación",
+    "F": "Construcción",
+    "G": "Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas",
+    "H": "Transporte y almacenamiento",
+    "I": "Actividades de alojamiento y de servicio de comidas",
+    "J": "Información y comunicaciones",
+    "K": "Actividades financieras y de seguros",
+    "L": "Actividades inmobiliarias",
+    "M": "Actividades profesionales, científicas y técnicas",
+    "N": "Actividades de servicios administrativos y de apoyo",
+    "O": "Administración pública y defensa; planes de seguridad social de afiliación obligatoria",
+    "P": "Enseñanza",
+    "Q": "Actividades de atención de la salud humana y de asistencia social",
+    "R": "Actividades artísticas, de entretenimiento y recreativas",
+    "S": "Otras actividades de servicios",
+    "T": "Actividades de los hogares como empleadores; actividades no diferenciadas de los hogares como productores de bienes y servicios para uso propio",
+    "U": "Actividades de organizaciones y órganos extraterritoriales",
+    "999": "Respuesta no codificable",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p44_lug_trab": {
+    "1": "En su comuna, en la vivienda donde reside",
+    "2": "En su comuna, fuera de la vivienda donde reside",
+    "3": "En otra comuna",
+    "4": "En otro país",
+    "5": "Varias comunas o países",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p44_lug_trab_esp": {
+    "2:16305": "Ver diccionario códigos territoriales específicos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p45_medio_transporte": {
+    "1": "Auto particular",
+    "2": "Transporte público (bus, micro, metro, tren, taxi, colectivo)",
+    "3": "Caminando",
+    "4": "Bicicleta (incluye scooter)",
+    "5": "Motocicleta",
+    "6": "Caballo, lancha o bote",
+    "7": "Otro",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p46a_tot_hijs_nac": {
+    "0:23": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p46b_hijas_nac": {
+    "0:22": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p46c_hijos_nac": {
+    "0:22": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p47a_tot_hijs_sobrev": {
+    "0:22": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p47b_hijas_sobrev": {
+    "0:15": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p47c_hijos_sobrev": {
+    "0:19": "Válidos",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "p48_anio_nac_uh": {
+    "1934:2024": "Válidos",
+    "-99": "No responde",
+    "nan": "No aplica"
+  },
+  "p48_mes_nac_uh": {
+    "1": "Enero",
+    "2": "Febrero",
+    "3": "Marzo",
+    "4": "Abril",
+    "5": "Mayo",
+    "6": "Junio",
+    "7": "Julio",
+    "8": "Agosto",
+    "9": "Septiembre",
+    "10": "Octubre",
+    "11": "Noviembre",
+    "12": "Diciembre",
+    "-99": "No respuesta",
+    "nan": "No aplica"
+  },
+  "div_genero": {
+    "1": "Sí",
+    "2": "No",
+    "3": "No clasificable",
+    "-66": "Valor suprimido por anonimización",
+    "nan": "No aplica"
+  }
+}

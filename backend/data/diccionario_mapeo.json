@@ -90,8 +90,8 @@
   "p6_fuente_agua": {
     "1": "Red pública",
     "2": "Pozo o noria",
-    "​3": "Camión aljibe",
-    "​4": "Río, vertiente, estero, canal, lago, agua lluvia, etc.",
+    "3": "Camión aljibe",
+    "4": "Río, vertiente, estero, canal, lago, agua lluvia, etc.",
     "-99": "No respuesta",
     "nan": "No aplica"
   },
@@ -269,7 +269,7 @@
     "12": "Nieto/a",
     "13": "Abuelo/a",
     "14": "Otro Pariente",
-    "15": "No Pariente​",
+    "15": "No Pariente",
     "16": "Servicio doméstico puertas adentro",
     "17": "Persona en vivienda colectiva",
     "19": "Persona en operativo calle"
@@ -356,7 +356,7 @@
     "nan": "No aplica"
   },
   "p27_nacionalidad": {
-    "1": "Chilena​ (exclusivamente)",
+    "1": "Chilena (exclusivamente)",
     "2": "Chilena y otra (doble nacionalidad)",
     "3": "Otra nacionalidad",
     "-99": "No respuesta",

@@ -8,6 +8,12 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
+# Importar el nuevo orquestador de narrativas
+try:
+    from app.generador_narrador import generar_narrativa as generar_narrativa_orquestador
+except ImportError:
+    from generador_narrador import generar_narrativa as generar_narrativa_orquestador
+
 EXPORTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../exports'))
 
 DIMENSIONES = [
@@ -64,45 +70,17 @@ def add_seq_field(run, seq_identifier):
 
 os.makedirs(EXPORTS_DIR, exist_ok=True)
 
-def _obtener_categorias_principales(categorias_dict: dict, ignore_keys=None, umbral_porcentaje=5.0):
-    """Obtiene las categorías con porcentaje mayor o igual al umbral, y la suma del resto."""
-    if ignore_keys is None:
-        ignore_keys = ["No declarado", "Ignorado", "Total"]
-        
-    valid_cats = {k: v for k, v in categorias_dict.items() if k not in ignore_keys and "Porcentaje" in v and k != "Total"}
-    if not valid_cats:
-        return [], [], 0.0
-    
-    # Ordenar por porcentaje descendente
-    sorted_cats = sorted(valid_cats.keys(), key=lambda k: valid_cats[k].get("Porcentaje", 0), reverse=True)
-    
-    cats_principales = []
-    pcts_principales = []
-    pct_restante = 0.0
-    
-    for cat in sorted_cats:
-        pct = valid_cats[cat].get("Porcentaje", 0)
-        if pct >= umbral_porcentaje:
-            cats_principales.append(cat)
-            pcts_principales.append(pct)
-        else:
-            pct_restante += pct
-            
-    return cats_principales, pcts_principales, pct_restante
-
-def generar_narrativa(titulo: str, datos: dict) -> str:
-    """Genera un párrafo descriptivo automático basado en los datos agrupados."""
+def generar_narrativa(titulo: str, datos: dict, num_tabla: int) -> str:
+    """Genera un párrafo descriptivo automático basado en los datos agrupados, invocando al nuevo orquestador."""
     unidad = datos.get("Unidad", "registros")
     total = datos.get("Denominador", 0)
     cats = datos.get("Categorias", {})
     
     if total == 0 or not cats:
-        return "No hay datos suficientes para generar un resumen."
+        return f"No hay datos suficientes para generar un resumen para {titulo}."
 
-    # Quitar comillas del título para que quede limpio
-    titulo_limpio = titulo.replace("'", "").replace('"', "")
-
-    if "Poblacion Total" in titulo:
+    # Mantenemos a salvo la lógica excepcional de Población Total que no opera como las demás
+    if "Poblacion Total" in titulo or "Población Total" in titulo:
         total_data = cats.get("Total", {})
         hombres = total_data.get("Hombres", 0)
         mujeres = total_data.get("Mujeres", 0)
@@ -111,64 +89,24 @@ def generar_narrativa(titulo: str, datos: dict) -> str:
         
         return f"La población total de la comuna es de {total:,} {unidad}. De estos, un {pct_m}% corresponden a mujeres y un {pct_h}% a hombres.\n\nEl siguiente cuadro presenta la tabla con información detallada."
 
-    top_cats, top_pcts, pct_restante = _obtener_categorias_principales(cats, umbral_porcentaje=5.0)
+    # Procesar PctMujeresTop1 para enviarlo al orquestador
+    # 1. Encontrar la categoría más frecuente (excluyendo "No respuesta", "No declarado", "Ignorado", "Total")
+    cats_validas = {k: v for k, v in cats.items() if k not in ["No respuesta", "No declarado", "Ignorado", "Total"] and "Subtotal" in v}
+    pct_mujeres_top1 = None
     
-    # Textos aleatorios para variabilidad
-    intros = [
-        f"De acuerdo al Censo 2024, respecto a la variable {titulo_limpio}, ",
-        f"Los datos del Censo 2024 muestran que para {titulo_limpio}, ",
-        f"En relación a {titulo_limpio}, el Censo 2024 indica que "
-    ]
-    conector = [
-        "seguido por",
-        "continuado por",
-        "y luego encontramos a"
-    ]
-    cierre_resto = [
-        f"El {pct_restante:.1f}% restante se agrupa en categorías de menor frecuencia.",
-        f"Las opciones restantes suman en conjunto un {pct_restante:.1f}%.",
-        f"El resto corresponde al {pct_restante:.1f}% de las respuestas."
-    ]
-    tabla_refs = [
-        "A continuación, se presenta información en tabla.",
-        "A continuación, la información se entrega en la siguiente tabla.",
-        "La información descrita, se presenta en la siguiente tabla."
-    ]
-    
-    intro_selec = random.choice(intros)
-    conector_selec = random.choice(conector)
-    tabla_selec = random.choice(tabla_refs)
-    
-    if len(top_cats) >= 3:
-        # Formato lista separada por comas y el último con "y"
-        lista_str = ", ".join([f"{c.replace('\'', '').replace('\"', '')} ({p:.1f}%)" for c, p in zip(top_cats[:-1], top_pcts[:-1])])
-        ultimo = f"{top_cats[-1].replace('\'', '').replace('\"', '')} ({top_pcts[-1]:.1f}%)"
-        texto = f"{intro_selec}las categorías principales son {lista_str} y {ultimo}."
-    elif len(top_cats) == 2:
-        cat0_limpio = top_cats[0].replace("'", "").replace('"', "")
-        cat1_limpio = top_cats[1].replace("'", "").replace('"', "")
-        texto = f"{intro_selec}la mayoría corresponde a {cat0_limpio} ({top_pcts[0]:.1f}%), {conector_selec} {cat1_limpio} ({top_pcts[1]:.1f}%)."
-    elif len(top_cats) == 1:
-        cat0_limpio = top_cats[0].replace("'", "").replace('"', "")
-        texto = f"{intro_selec}la gran proporción corresponde a {cat0_limpio} ({top_pcts[0]:.1f}%)."
-    else:
-        texto = f"Se contabilizaron {total:,} {unidad} válidas en la variable {titulo_limpio}."
+    if cats_validas:
+        cat_top = max(cats_validas.keys(), key=lambda k: cats_validas[k].get("Subtotal", 0))
+        top_data = cats_validas[cat_top]
+        if "Mujeres" in top_data and "Hombres" in top_data:
+            sum_sexo = top_data["Mujeres"] + top_data["Hombres"]
+            if sum_sexo > 0:
+                pct_mujeres_top1 = round((top_data["Mujeres"] / sum_sexo) * 100, 1)
+                
+    # Inyectamos el valor calculado al diccionario in-situ para el orquestador
+    datos["PctMujeresTop1"] = pct_mujeres_top1
 
-    if pct_restante > 0.1 and len(top_cats) > 0:
-        texto += " " + random.choice(cierre_resto)
-
-    # Si hay apertura por sexo en la tabla (ej. edades)
-    if top_cats and "Hombres" in cats.get(top_cats[0], {}) and "Mujeres" in cats.get(top_cats[0], {}):
-        hombres_top = cats[top_cats[0]]["Hombres"]
-        mujeres_top = cats[top_cats[0]]["Mujeres"]
-        if hombres_top + mujeres_top > 0:
-            pct_m_top = round((mujeres_top / (hombres_top + mujeres_top)) * 100, 1)
-            texto += f" Destaca además que dentro de esta categoría principal, el {pct_m_top}% corresponde a mujeres."
-
-    # Agregar la referencia hacia la tabla detallada al mismo párrafo
-    texto += f" {tabla_selec}"
-
-    return texto
+    # Invocamos el orquestador principal
+    return generar_narrativa_orquestador(titulo, datos, num_tabla)
 
 def _crear_dataframe_desde_diccionario(datos: dict) -> pd.DataFrame:
     """Convierte el diccionario de Categorias a un Pandas DataFrame plano para exportar."""
@@ -276,6 +214,9 @@ def generar_word(comuna_nombre: str, region_nombre: str, datos_censo: dict, time
     doc.add_heading(f'Región: {region_nombre} | Comuna: {comuna_nombre}', 2)
     doc.add_paragraph(f'Generado el: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
     doc.add_page_break()
+    
+    # Contador global de tablas del documento
+    contador_tabla_global = 1
 
     for dim in DIMENSIONES:
         dim_vars = {k: v for k, v in datos_censo.items() if k in dim["variables"]}
@@ -305,8 +246,8 @@ def generar_word(comuna_nombre: str, region_nombre: str, datos_censo: dict, time
             # para no complicar el estilo o simplemente dejamos el Nivel 2 natural de Word.
             doc.add_heading(titulo, level=2)
             
-            # 8 y 6. Narrativa descriptiva ANTES de la tabla y sin prefijo "Resumen Analítico"
-            narrativa = generar_narrativa(titulo, info)
+            # Narrativa descriptiva ANTES de la tabla y referenciando a la tabla correcta
+            narrativa = generar_narrativa(titulo, info, num_tabla=contador_tabla_global)
             doc.add_paragraph(narrativa)
             
             # 2. Título de la tabla centrado con identificador SEQ, variable, unidad y comuna
@@ -348,6 +289,7 @@ def generar_word(comuna_nombre: str, region_nombre: str, datos_censo: dict, time
             
             doc.add_paragraph("") # Espaciado extra
             var_indice += 1
+            contador_tabla_global += 1
         
     doc.save(filepath)
     return filepath

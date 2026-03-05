@@ -12,16 +12,16 @@ except Exception as e:
 
 VARIABLES_CENSO = {
   "viviendas": [
-    {"col": "p2_tipo_vivienda", "desc": "Tipo de vivienda particular"},
-    {"col": "p3a_estado_ocupacion", "desc": "Estado de ocupación de la vivienda"},
-    {"col": "p4a_mat_paredes", "desc": "Material de construcción en las paredes exteriores"},
-    {"col": "p4b_mat_techo", "desc": "Material de construcción en la cubierta del techo"},
-    {"col": "p4c_mat_piso", "desc": "Material de construcción en el piso"},
-    {"col": "p6_fuente_agua", "desc": "Origen del agua (Fuente principal)"},
-    {"col": "p7_distrib_agua", "desc": "Sistema de distribución del agua"},
-    {"col": "p8_serv_hig", "desc": "Servicio higiénico (WC)"},
-    {"col": "p9_fuente_elect", "desc": "Origen de la electricidad"},
-    {"col": "p10_basura", "desc": "Medio de eliminación de basura"}
+    {"col": "p2_tipo_vivienda", "desc": "Tipo de vivienda particular", "where": "tipo_operativo = '2'"},
+    {"col": "p3a_estado_ocupacion", "desc": "Estado de ocupación de la vivienda", "where": "tipo_operativo = '2'"},
+    {"col": "p4a_mat_paredes", "desc": "Material de construcción en las paredes exteriores", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p4b_mat_techo", "desc": "Material de construcción en la cubierta del techo", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p4c_mat_piso", "desc": "Material de construcción en el piso", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p6_fuente_agua", "desc": "Origen del agua (Fuente principal)", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p7_distrib_agua", "desc": "Sistema de distribución del agua", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p8_serv_hig", "desc": "Servicio higiénico (WC)", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p9_fuente_elect", "desc": "Origen de la electricidad", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"},
+    {"col": "p10_basura", "desc": "Medio de eliminación de basura", "where": "tipo_operativo = '2' AND p3a_estado_ocupacion = '1' AND p3b_estado_ocupacion = '1'"}
   ],
   "hogares": [
     {"col": "p12_tenencia_viv", "desc": "Tenencia de vivienda"},
@@ -31,22 +31,27 @@ VARIABLES_CENSO = {
   ],
   "personas": [
     {"col": "edad_quinquenal", "desc": "Edad en tramos"},
-    {"col": "p23_est_civil", "desc": "Estado conyugal o civil"},
+    {"col": "p23_est_civil", "desc": "Estado conyugal o civil", "where": "TRY_CAST(edad AS INTEGER) >= 15"},
     {"col": "p28_autoid_pueblo", "desc": "Autoiden. pueblo indígena u originario"},
-    {"col": "p28_pueblo_pert", "desc": "A qué pueblo indígena pertenece"},
+    {"col": "p28_pueblo_pert", "desc": "A qué pueblo indígena pertenece", "where": "p28_autoid_pueblo = '1'"},
     {"col": "p29_afrodescendencia_rec", "desc": "Afrodescendencia"},
-    {"col": "p31_religion_rec", "desc": "Tiene religión o credo"},
-    {"col": "discapacidad", "desc": "Discapacidad"},
+    {"col": "p31_religion_rec", "desc": "Tiene religión o credo", "where": "TRY_CAST(edad AS INTEGER) >= 15"},
+    {"col": "discapacidad", "desc": "Discapacidad", "where": "TRY_CAST(edad AS INTEGER) >= 5"},
     {"col": "escolaridad", "desc": "Años de escolaridad"},
-    {"col": "sit_fuerza_trabajo", "desc": "Situación en la fuerza de trabajo"},
-    {"col": "p40_cise_rec", "desc": "Categoría ocupacional"},
-    {"col": "p45_medio_transporte", "desc": "Medio de transporte principal al trabajo"}
+    {"col": "sit_fuerza_trabajo", "desc": "Situación en la fuerza de trabajo", "where": "TRY_CAST(edad AS INTEGER) >= 15"},
+    {"col": "p40_cise_rec", "desc": "Categoría ocupacional", "where": "sit_fuerza_trabajo = '1'"},
+    {"col": "p45_medio_transporte", "desc": "Medio de transporte principal al trabajo", "where": "sit_fuerza_trabajo = '1'"}
   ]
 }
 
 def _calcular_porcentajes(data, total_denominador):
     """Calcula porcentajes para cada subtotal respecto al total."""
+    EXCLUIR_DE_ANALISIS = ['No declarado', 'No informado', 'No respuesta', 'No responde', 'Valor suprimido por anonimización', 'Fuera de universo', 'No aplica']
     for key in data['Categorias']:
+        if key in EXCLUIR_DE_ANALISIS:
+            data['Categorias'][key]['Porcentaje'] = None
+            continue
+            
         if total_denominador > 0:
             porcentaje = (data['Categorias'][key]['Subtotal'] / total_denominador) * 100
         else:
@@ -78,7 +83,7 @@ def get_poblacion_total(comuna_id: str):
     }
     return _calcular_porcentajes(data, total)
 
-def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
+def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str, where_clause: str = None):
     con = get_db()
     
     # Manejar agrupamiento dinámico de edad
@@ -87,6 +92,10 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
         col_seleccion = "CASE WHEN TRY_CAST(edad AS INTEGER) <= 14 THEN '0-14' WHEN TRY_CAST(edad AS INTEGER) <= 64 THEN '15-64' ELSE '65 y más años' END"
     
     # Manejar variables específicas por entidad
+    where_sql = f"comuna = '{comuna_id}'"
+    if where_clause:
+        where_sql += f" AND {where_clause}"
+
     if entidad == 'personas':
         query = f"""
         SELECT 
@@ -95,7 +104,7 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
             SUM(CASE WHEN sexo = '1' THEN 1 ELSE 0 END) as hombres,
             SUM(CASE WHEN sexo = '2' THEN 1 ELSE 0 END) as mujeres
         FROM personas 
-        WHERE comuna = '{comuna_id}'
+        WHERE {where_sql}
         GROUP BY {col_seleccion}
         ORDER BY TRY_CAST({col_seleccion} AS INTEGER) ASC, {col_seleccion} ASC
         """
@@ -106,16 +115,18 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
             {col_seleccion} as cat,
             COUNT(*) as subtotal
         FROM {entidad} 
-        WHERE comuna = '{comuna_id}'
+        WHERE {where_sql}
         GROUP BY {col_seleccion}
         ORDER BY TRY_CAST({col_seleccion} AS INTEGER) ASC, {col_seleccion} ASC
         """
         unidad = entidad
 
     df = con.execute(query).df()
-    total = int(df['subtotal'].sum())
     
     categorias = {}
+    EXCLUIR_DE_ANALISIS = ['No declarado', 'No informado', 'No respuesta', 'No responde', 'Valor suprimido por anonimización', 'Fuera de universo', 'No aplica']
+    total_valido = 0
+
     # Obtener mapeo de etiquetas para esta columna
     dict_columna = MAPPING_DICT.get(columna, {})
 
@@ -128,6 +139,13 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
             cat_label = 'No declarado'
         else:
             cat_label = dict_columna.get(cat_raw, cat_raw)
+            # Fix manual para Tabla 18 (Origen del agua) "3" y "4"
+            if columna == "p6_fuente_agua":
+                if cat_label in ("3", "03"): 
+                    cat_label = "Camión aljibe"
+                elif cat_label in ("4", "04"): 
+                    cat_label = "Río, vertiente, estero, canal, lago, agua lluvia, etc."
+                
             # Normalizar "-99" vs "99" si el texto es literal numérico a veces
             if cat_label == cat_raw and cat_raw == "-99" and "99" in dict_columna:
                 cat_label = dict_columna.get("99", "No informado")
@@ -143,6 +161,10 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
             valor_dict["Hombres"] = int(row['hombres'])
             valor_dict["Mujeres"] = int(row['mujeres'])
             
+        # Acumular total válido (el denominador de análisis excluye "No declarado", etc)
+        if cat_label not in EXCLUIR_DE_ANALISIS:
+            total_valido += valor_dict["Subtotal"]
+            
         # Acumular por si hay duplicados por No Declarados u otros mapeos que converjan
         if cat_label in categorias:
             categorias[cat_label]["Subtotal"] += valor_dict["Subtotal"]
@@ -153,11 +175,11 @@ def _calcular_variable(comuna_id: str, entidad: str, columna: str, desc: str):
             categorias[cat_label] = valor_dict
 
     data = {
-        "Denominador": total,
+        "Denominador": total_valido,
         "Unidad": unidad,
         "Categorias": categorias
     }
-    return _calcular_porcentajes(data, total)
+    return _calcular_porcentajes(data, total_valido)
 
 
 def calcular_todas_las_reglas(comuna_id: str, seleccionadas: list = None) -> dict:
@@ -173,6 +195,6 @@ def calcular_todas_las_reglas(comuna_id: str, seleccionadas: list = None) -> dic
         for var in vars_list:
             titulo = var['desc']
             if not seleccionadas or titulo in seleccionadas:
-                resultados[titulo] = _calcular_variable(comuna_id, entidad, var['col'], var['desc'])
+                resultados[titulo] = _calcular_variable(comuna_id, entidad, var['col'], var['desc'], var.get('where'))
 
     return resultados

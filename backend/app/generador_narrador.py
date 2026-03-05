@@ -222,11 +222,10 @@ def generar_narrativa(titulo: str, datos: dict, num_tabla: int,
 
     # PASO 5. Generar componentes modulares adicionales
     frase_sexo = generar_frase_sexo(datos.get("PctMujeresTop1"), config)
-    frase_nodecl = generar_frase_nodeclarado(clasificacion["pct_nodeclarado"], unidad, config)
     frase_tabla = generar_ref_tabla(num_tabla)
 
-    # PASO 6. Ensamblar
-    parrafo = f"{cuerpo} {frase_nodecl} {frase_sexo} {frase_tabla}"
+    # PASO 6. Ensamblar (se eliminó la mención de no declarados por solicitud)
+    parrafo = f"{cuerpo} {frase_sexo} {frase_tabla}"
     
     # Limpiador final (quitar espacios dobles, asegurar punto final)
     # 1. Limpiar espacios múltiples a uno

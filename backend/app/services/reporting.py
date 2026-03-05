@@ -115,10 +115,14 @@ def _crear_dataframe_desde_diccionario(datos: dict) -> pd.DataFrame:
     
     # Check if "Total" is the only key (e.g., Poblacion Total)
     is_only_total = (list(cats.keys()) == ["Total"])
+    EXCLUIR_DE_ANALISIS = ['No declarado', 'No informado', 'No respuesta', 'No responde', 'Valor suprimido por anonimización', 'Fuera de universo', 'No aplica']
     
     for k, v in cats.items():
         if k == "Total" and not is_only_total:
             continue # Lo manejamos al final si está presente
+        if k in EXCLUIR_DE_ANALISIS:
+            continue # Omitir explícitamente de la tabla
+            
         fila = {"Categoría": k}
         fila.update(v)
         
